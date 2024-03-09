@@ -19,7 +19,7 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined
 ;;;
-;;; $$ Last modified:  23:32:34 Sat Mar  9 2024 CET
+;;; $$ Last modified:  23:42:05 Sat Mar  9 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -67,6 +67,29 @@
         (ycoeffs (make-double-float-array 3 :initial-contents
                                           (list 0.0 b1 b2))))
     (make-filter 3 xcoeffs ycoeffs)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; ****** filters/biquad
+;;; AUTHOR
+;;; Ruben Philipp <me@rubenphilipp.com>
+;;;
+;;; CREATED
+;;; 2024-03-09
+;;; 
+;;; DESCRIPTION
+;;; This macro calls the generator method for biquad filters.
+;;; Essntially, this is an alias for the clm:filter function. 
+;;;
+;;; ARGUMENTS
+;;; - The (biquad) filter object.
+;;; - The sample to be processed. 
+;;; 
+;;; SYNOPSIS
+(defmacro biquad (fl input)
+  ;;; ****
+  `(filter ,fl ,input))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
