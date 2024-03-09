@@ -19,7 +19,7 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined
 ;;;
-;;; $$ Last modified:  23:27:09 Sat Mar  9 2024 CET
+;;; $$ Last modified:  23:28:41 Sat Mar  9 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -136,8 +136,6 @@
 ;;;
 ;;; SYNOPSIS
 (defun make-biquad-highpass (fc &optional (din (sqrt 2.0)))
-  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
-  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
   ;;; ****
   (let* ((theta (/ (* 2 pi fc) *clm-srate*))
          (beta (let ((d (* (sin theta) (/ din 2))))
@@ -170,8 +168,6 @@
 ;;;
 ;;; SYNOPSIS
 (defun make-biquad-bandpass (f1 f2)
-  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
-  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
   ;;; ****
   (when (>= f1 f2)
     (error "make-biquad-bandpass: f1 should be < f2"))
@@ -206,8 +202,6 @@
 ;;;
 ;;; SYNOPSIS
 (defun make-biquad-bandstop (f1 f2)
-  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
-  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
   ;;; ****
   (when (>= f1 f2)
     (error "make-biquad-bandstop: f1 should be < f2"))
