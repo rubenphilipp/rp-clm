@@ -19,7 +19,7 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined
 ;;;
-;;; $$ Last modified:  23:21:16 Sat Mar  9 2024 CET
+;;; $$ Last modified:  23:25:04 Sat Mar  9 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -81,6 +81,8 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
+;;; This is a simple biquad lowpass.
+;;; 
 ;;; Implementation from dsp.scm (snd), make-iir-low-pass-2.
 ;;;
 ;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
@@ -115,6 +117,8 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
+;;; This is a simple biquad highpass.
+;;; 
 ;;; Implementation from dsp.scm (snd), make-iir-high-pass-2.
 ;;;
 ;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
@@ -151,6 +155,8 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
+;;; This is a simple biquad bandpass.
+;;; 
 ;;; Implementation from dsp.scm (snd), make-iir-band-pass-2,
 ;;;
 ;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
@@ -185,6 +191,8 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
+;;; This is a simple biquad bandstop.
+;;; 
 ;;; Implementation from dsp.scm (snd), make-iir-band-stop-2.
 ;;;
 ;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
