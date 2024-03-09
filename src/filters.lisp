@@ -19,7 +19,7 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined
 ;;;
-;;; $$ Last modified:  23:25:04 Sat Mar  9 2024 CET
+;;; $$ Last modified:  23:27:09 Sat Mar  9 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -73,7 +73,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; ****f* filters/make-iir-lowpass
+;;; ****f* filters/make-biquad-lowpass
 ;;; AUTHOR
 ;;; Ruben Philipp <me@rubenphilipp.com>
 ;;;
@@ -99,7 +99,7 @@
 ;;; A filter gen. 
 ;;;
 ;;; SYNOPSIS
-(defun make-iir-lowpass (fc &optional (din (sqrt 2.0)))
+(defun make-biquad-lowpass (fc &optional (din (sqrt 2.0)))
   ;;; ****
   (let* ((theta (/ (* 2 pi fc) *clm-srate*))
          (beta (let ((d (* (sin theta) (/ din 2))))
@@ -109,7 +109,7 @@
     (make-local-biquad alpha (* 2.0 alpha) alpha gamma beta)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; ****f* filters/make-iir-highpass
+;;; ****f* filters/make-biquad-highpass
 ;;; AUTHOR
 ;;; Ruben Philipp <me@rubenphilipp.com>
 ;;;
@@ -135,7 +135,7 @@
 ;;; A filter gen. 
 ;;;
 ;;; SYNOPSIS
-(defun make-iir-highpass (fc &optional (din (sqrt 2.0)))
+(defun make-biquad-highpass (fc &optional (din (sqrt 2.0)))
   ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
   ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
   ;;; ****
@@ -147,7 +147,7 @@
     (make-local-biquad alpha (* -2.0 alpha) alpha gamma beta)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; ****f* filters/make-iir-bandpass
+;;; ****f* filters/make-biquad-bandpass
 ;;; AUTHOR
 ;;; Ruben Philipp <me@rubenphilipp.com>
 ;;;
@@ -169,12 +169,12 @@
 ;;; A filter gen. 
 ;;;
 ;;; SYNOPSIS
-(defun make-iir-bandpass (f1 f2)
+(defun make-biquad-bandpass (f1 f2)
   ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
   ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
   ;;; ****
   (when (>= f1 f2)
-    (error "make-iir-bandpass: f1 should be < f2"))
+    (error "make-biquad-bandpass: f1 should be < f2"))
   (let* ((theta (/ (* 2 pi (sqrt (* f1 f2))) *clm-srate*))
          (beta (let ((t2 (tan (/ theta (* 2 (/ (sqrt (* f1 f2)) (- f2 f1)))))))
                  (* 0.5 (/ (- 1.0 t2) (+ 1.0 t2)))))
@@ -183,7 +183,7 @@
     (make-local-biquad alpha 0.0 (- alpha) gamma beta)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; ****f* filters/make-iir-bandstop
+;;; ****f* filters/make-biquad-bandstop
 ;;; AUTHOR
 ;;; Ruben Philipp <me@rubenphilipp.com>
 ;;;
@@ -205,12 +205,12 @@
 ;;; A filter gen. 
 ;;;
 ;;; SYNOPSIS
-(defun make-iir-bandstop (f1 f2)
+(defun make-biquad-bandstop (f1 f2)
   ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
   ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
   ;;; ****
   (when (>= f1 f2)
-    (error "make-iir-bandstop: f1 should be < f2"))
+    (error "make-biquad-bandstop: f1 should be < f2"))
   (let* ((theta (/ (* 2 pi (sqrt (* f1 f2))) *clm-srate*))
          (beta (let ((t2 (tan (/ theta (* 2 (/ (sqrt (* f1 f2)) (- f2 f1)))))))
                  (* 0.5 (/ (- 1.0 t2) (+ 1.0 t2))))))
