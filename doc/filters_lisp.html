@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<script src="./robodoc.js"></script>
+<title>filters.lisp</title>
+<!-- Source: ./src/filters.lisp -->
+<!-- Generated with ROBODoc Version 4.99.44 (Nov 13 2022) -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc"></a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="./toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="./robo_sourcefiles.html#top">Sourcefiles</a>
+<a class="menuitem" href="./masterindex.html#top">Index</a>
+<a class="menuitem" href="./robo_functions.html#top">Functions</a>
+<a class="menuitem" href="./robo_modules.html#top">Modules</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="rp2dclm2ffilters"></a>
+<a name="robo0"></a><h2>rp-clm/filters [ Modules ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./robo_modules.html#robo_top_of_doc">Modules</a> ]</p>
+<p class="item_name">NAME</p>
+<pre> <strong>filters</strong>
+</pre>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-09
+</pre>
+<p class="item_name">PURPOSE</p>
+<pre> Implementation of various (dsp) filter generators and related methods.  Some
+ functions are implementations of the procedures described in the Scheme
+ version of clm/snd
+ (cf. <a href="https://ccrma.stanford.edu/software/snd/snd/sndclm.html">https://ccrma.stanford.edu/software/snd/snd/sndclm.html</a> and
+ <a href="https://ccrma.stanford.edu/software/snd/)">https://ccrma.stanford.edu/software/snd/)</a>.
+
+ CLASS HIERARCHY
+ none. no classes defined
+
+ $$ Last modified:  22:52:52 Sat Mar  9 2024 CET
+</pre>
+
+<hr />
+<a name="filters2fmake2dbiquad"></a>
+<a name="robo2"></a><h2>filters/make-biquad [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo0">filters</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-09
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> Make a biquad filter via the filter gen.
+ Cf. dsp.scm (snd). 
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> The biquad coefficients:
+ - a0
+ - a1
+ - a2
+ - b1
+ - b2
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> A biquad/filter gen. 
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">(<strong>make-biquad</strong> -.1 -.2 -.02 1.2 3.2)
+;; =&gt;
+#&lt;(filter: order: 3, xcoeffs: [-0.100, -0.200, -0.020], ycoeffs: [#1=0.0, 1.200, 3.200], state: [#1#, #1#, #1#]&gt;
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>make-biquad</strong> (a0 a1 a2 b1 b2)
+</pre>
+
+<hr />
+<a name="filters2fmake2diir2dbandpass"></a>
+<a name="robo3"></a><h2>filters/make-iir-bandpass [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo0">filters</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-09
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> Implementation from dsp.scm (snd). 
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> A filter gen. 
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>make-iir-bandpass</strong> (f1 f2)
+  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
+  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
+</pre>
+
+<hr />
+<a name="filters2fmake2diir2dbandstop"></a>
+<a name="robo4"></a><h2>filters/make-iir-bandstop [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo0">filters</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-09
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> Implementation from dsp.scm (snd). 
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> A filter gen. 
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>make-iir-bandstop</strong> (f1 f2)
+  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
+  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
+</pre>
+
+<hr />
+<a name="filters2fmake2diir2dhighpass"></a>
+<a name="robo5"></a><h2>filters/make-iir-highpass [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo0">filters</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-09
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> Implementation from dsp.scm (snd). 
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> A filter gen. 
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>make-iir-highpass</strong> (fc din)
+  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
+  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
+</pre>
+
+<hr />
+<a name="filters2fmake2diir2dlowpass"></a>
+<a name="robo6"></a><h2>filters/make-iir-lowpass [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo0">filters</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-09
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> Implementation from dsp.scm (snd). 
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> A filter gen. 
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>make-iir-lowpass</strong> (fc din)
+  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
+  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./src/filters.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-09 22:54:38</p>
+</div> <!-- footer -->
+</body>
+</html>
