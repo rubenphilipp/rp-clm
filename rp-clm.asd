@@ -13,7 +13,7 @@
 ;;; System definition for rp-clm. 
 ;;;
 ;;;
-;;; $$ Last modified:  22:37:12 Sat Mar  9 2024 CET
+;;; $$ Last modified:  00:19:39 Sun Mar 10 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -23,15 +23,16 @@
   :author "Ruben Philipp <me@rubenphilipp.com>"
   :license "GPL Version 2.0 or later"
   :serial t
-  ;; :in-order-to ((test-op (test-op "apparence/tests")))
-  :depends-on ("clm")
+  :in-order-to ((test-op (test-op "rp-clm/tests")))
+  ;;:depends-on ("clm")
   :pathname "src/"
   :components ((:file "package")
-               (:file "filters")))
+               (:file "filters")
+               ;; this must be loaded at the end of this list
+               (:file "export")))
 
 
 ;;; regression tests
-#|
 (defsystem "rp-clm/tests"
   :description "Test suite for rp-clm."
   :author "Ruben Philipp <me@rubenphilipp.com>"
@@ -39,9 +40,8 @@
   :depends-on ("rp-clm"
                "fiveam")
   :pathname "tests/"
-  :perform (test-op (o c) (symbol-call :apparence.tests :run-tests))
+  :perform (test-op (o c) (symbol-call :rp-clm.tests :run-tests))
   :components ((:file "tests")))
-|#
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

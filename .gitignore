@@ -115,6 +115,8 @@ Temporary Items
 *.o
 *.so
 
+### exceptions
+!/tests/noise.wav
 
 ################################################################################
 ## EOF .gitignore
