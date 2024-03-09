@@ -13,14 +13,14 @@
 ;;; Package definition for rp-clm.
 ;;;
 ;;;
-;;; $$ Last modified:  22:39:37 Sat Mar  9 2024 CET
+;;; $$ Last modified:  23:49:21 Sat Mar  9 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (in-package :cl-user)
 
 (defpackage :rp-clm
-  (:use :common-lisp))
+  (:use :common-lisp :clm))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
