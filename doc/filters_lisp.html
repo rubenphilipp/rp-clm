@@ -47,7 +47,7 @@
  CLASS HIERARCHY
  none. no classes defined
 
- $$ Last modified:  22:52:52 Sat Mar  9 2024 CET
+ $$ Last modified:  23:21:16 Sat Mar  9 2024 CET
 </pre>
 
 <hr />
@@ -97,7 +97,13 @@
 <pre> 2024-03-09
 </pre>
 <p class="item_name">DESCRIPTION</p>
-<pre> Implementation from dsp.scm (snd). 
+<pre> Implementation from dsp.scm (snd), make-iir-band-pass-2,
+
+ "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> - The low frequency limit.
+ - The high frequency limit.
 </pre>
 <p class="item_name">RETURN VALUE</p>
 <pre> A filter gen. 
@@ -120,7 +126,13 @@
 <pre> 2024-03-09
 </pre>
 <p class="item_name">DESCRIPTION</p>
-<pre> Implementation from dsp.scm (snd). 
+<pre> Implementation from dsp.scm (snd), make-iir-band-stop-2.
+
+ "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> - The low frequency limit.
+ - The high frequency limit.
 </pre>
 <p class="item_name">RETURN VALUE</p>
 <pre> A filter gen. 
@@ -143,13 +155,23 @@
 <pre> 2024-03-09
 </pre>
 <p class="item_name">DESCRIPTION</p>
-<pre> Implementation from dsp.scm (snd). 
+<pre> Implementation from dsp.scm (snd), make-iir-high-pass-2.
+
+ "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> - The cutoff frequency (Hz).
+</pre>
+<p class="item_name">OPTIONAL ARGUMENTS</p>
+<pre> - A quality factor (din, cf. Lane et al.).
+   Suggested range: 0.2...10.0
+   Default = (sqrt 2.0)
 </pre>
 <p class="item_name">RETURN VALUE</p>
 <pre> A filter gen. 
 </pre>
 <p class="item_name">SYNOPSIS</p>
-<pre class="source">(defun <strong>make-iir-highpass</strong> (fc din)
+<pre class="source">(defun <strong>make-iir-highpass</strong> (fc &amp;optional (din (sqrt 2.0)))
   ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
   ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
 </pre>
@@ -166,20 +188,28 @@
 <pre> 2024-03-09
 </pre>
 <p class="item_name">DESCRIPTION</p>
-<pre> Implementation from dsp.scm (snd). 
+<pre> Implementation from dsp.scm (snd), make-iir-low-pass-2.
+
+ "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> - The cutoff frequency (Hz).
+</pre>
+<p class="item_name">OPTIONAL ARGUMENTS</p>
+<pre> - A quality factor (din, cf. Lane et al.).
+   Suggested range: 0.2...10.0
+   Default = (sqrt 2.0)
 </pre>
 <p class="item_name">RETURN VALUE</p>
 <pre> A filter gen. 
 </pre>
 <p class="item_name">SYNOPSIS</p>
-<pre class="source">(defun <strong>make-iir-lowpass</strong> (fc din)
-  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
-  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
+<pre class="source">(defun <strong>make-iir-lowpass</strong> (fc &amp;optional (din (sqrt 2.0)))
 </pre>
 
 </div> <!-- content -->
 <div id="footer">
-<p>Generated from ./src/filters.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-09 22:54:38</p>
+<p>Generated from ./src/filters.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-09 23:23:20</p>
 </div> <!-- footer -->
 </body>
 </html>
