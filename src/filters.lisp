@@ -19,7 +19,7 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined
 ;;;
-;;; $$ Last modified:  22:52:52 Sat Mar  9 2024 CET
+;;; $$ Last modified:  23:21:16 Sat Mar  9 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -81,18 +81,26 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
-;;; Implementation from dsp.scm (snd). 
+;;; Implementation from dsp.scm (snd), make-iir-low-pass-2.
+;;;
+;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+;;;
+;;; ARGUMENTS
+;;; - The cutoff frequency (Hz).
+;;;
+;;; OPTIONAL ARGUMENTS
+;;; - A quality factor (din, cf. Lane et al.).
+;;;   Suggested range: 0.2...10.0
+;;;   Default = (sqrt 2.0)
 ;;; 
 ;;; RETURN VALUE
 ;;; A filter gen. 
 ;;;
 ;;; SYNOPSIS
-(defun make-iir-lowpass (fc din)
-  ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
-  ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
+(defun make-iir-lowpass (fc &optional (din (sqrt 2.0)))
   ;;; ****
   (let* ((theta (/ (* 2 pi fc) *clm-srate*))
-         (beta (let ((d (* (sin theta) (/ (or din (sqrt 2.0)) 2))))
+         (beta (let ((d (* (sin theta) (/ din 2))))
                  (* 0.5 (/ (- 1.0 d) (+ 1.0 d)))))
          (gamma (* (+ 0.5 beta) (cos theta)))
          (alpha (* 0.5 (- (+ 0.5 beta) gamma))))
@@ -107,18 +115,28 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
-;;; Implementation from dsp.scm (snd). 
+;;; Implementation from dsp.scm (snd), make-iir-high-pass-2.
+;;;
+;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+;;;
+;;; ARGUMENTS
+;;; - The cutoff frequency (Hz).
+;;;
+;;; OPTIONAL ARGUMENTS
+;;; - A quality factor (din, cf. Lane et al.).
+;;;   Suggested range: 0.2...10.0
+;;;   Default = (sqrt 2.0)
 ;;; 
 ;;; RETURN VALUE
 ;;; A filter gen. 
 ;;;
 ;;; SYNOPSIS
-(defun make-iir-highpass (fc din)
+(defun make-iir-highpass (fc &optional (din (sqrt 2.0)))
   ;;; din=(sqrt 2.0) for example (suggested range 0.2.. 10)
   ;;; from dsp.scm (RP  Sat Mar  9 19:35:56 2024)
   ;;; ****
   (let* ((theta (/ (* 2 pi fc) *clm-srate*))
-         (beta (let ((d (* (sin theta) (/ (or din (sqrt 2.0)) 2))))
+         (beta (let ((d (* (sin theta) (/ din 2))))
                  (* 0.5 (/ (- 1.0 d) (+ 1.0 d)))))
          (gamma (* (+ 0.5 beta) (cos theta)))
          (alpha (* 0.5 (+ 0.5 beta gamma))))
@@ -133,7 +151,13 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
-;;; Implementation from dsp.scm (snd). 
+;;; Implementation from dsp.scm (snd), make-iir-band-pass-2,
+;;;
+;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+;;;
+;;; ARGUMENTS
+;;; - The low frequency limit.
+;;; - The high frequency limit.
 ;;; 
 ;;; RETURN VALUE
 ;;; A filter gen. 
@@ -161,7 +185,13 @@
 ;;; 2024-03-09
 ;;; 
 ;;; DESCRIPTION
-;;; Implementation from dsp.scm (snd). 
+;;; Implementation from dsp.scm (snd), make-iir-band-stop-2.
+;;;
+;;; "DSP Filter Cookbook" by Lane et al, Prompt Pubs, 2001
+;;;
+;;; ARGUMENTS
+;;; - The low frequency limit.
+;;; - The high frequency limit.
 ;;; 
 ;;; RETURN VALUE
 ;;; A filter gen. 
