@@ -3,7 +3,7 @@
 #+startup: showall 
 
 #+begin_comment
-$$ Last modified:  22:30:01 Sat Mar  9 2024 CET
+$$ Last modified:  22:42:26 Sat Mar  9 2024 CET
 #+end_comment
 
 
@@ -14,4 +14,4 @@ version of Bill Schottstaedt's CLM (Common Lisp Music).
 
 * Dependencies
 
-- [[https://ccrma.stanford.edu/software/snd/snd/clm.html][CLM]]
+- [[https://ccrma.stanford.edu/software/clm/][CLM]]
