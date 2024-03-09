@@ -1,0 +1,17 @@
+#+title: rp-clm
+#+author: Ruben Philipp
+#+startup: showall 
+
+#+begin_comment
+$$ Last modified:  22:30:01 Sat Mar  9 2024 CET
+#+end_comment
+
+
+* Description
+
+This is a collection mainly of generators and instruments for the common lisp
+version of Bill Schottstaedt's CLM (Common Lisp Music).
+
+* Dependencies
+
+- [[https://ccrma.stanford.edu/software/snd/snd/clm.html][CLM]]
