@@ -16,7 +16,7 @@
 ;;; CLASS HIERARCHY
 ;;;
 ;;;
-;;; $$ Last modified:  23:00:14 Mon Mar 11 2024 CET
+;;; $$ Last modified:  23:32:44 Mon Mar 11 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -31,6 +31,27 @@
 ;;; The results are written to a csv file. 
 ;;; cf. scentroid.ins and track-rms.ins
 ;;; RP  Mon Mar 11 16:54:45 2024
+;;;
+;;; EXAMPLE
+#|
+(let* ((infile "/Users/rubenphilipp/Desktop/clm/fft/brushes.wav")
+       (outfile "/tmp/ana.csv")
+       (res (analyze-spectrum infile :in-samples? nil
+                                     :fftsize 2048
+                                     :norm-type 0
+                                     ;;:dur .5
+                                     :outfile outfile)))
+  res)
+
+(let* ((anafile "/tmp/ana.csv")
+       (separator #\comma)
+       (csv (cl-csv:read-csv (pathname anafile) :separator separator))
+       (row 300)
+       (freqs (cdr (first csv)))
+       (snapshot (cdr (nth row csv))))
+  (vgplot::plot freqs snapshot))
+|#
+
 (definstrument analyze-spectrum (file &key
                                  (beg 0.0) (dur nil) (rfreq 100)
                                  (outfile "/tmp/spectrum.csv")
