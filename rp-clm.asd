@@ -13,7 +13,7 @@
 ;;; System definition for rp-clm. 
 ;;;
 ;;;
-;;; $$ Last modified:  00:19:39 Sun Mar 10 2024 CET
+;;; $$ Last modified:  22:58:08 Mon Mar 11 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -28,6 +28,7 @@
   :pathname "src/"
   :components ((:file "package")
                (:file "filters")
+               (:file "analysis")
                ;; this must be loaded at the end of this list
                (:file "export")))
 

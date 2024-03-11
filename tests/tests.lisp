@@ -15,7 +15,7 @@
 ;;; CLASS HIERARCHY
 ;;;
 ;;;
-;;; $$ Last modified:  00:29:22 Sun Mar 10 2024 CET
+;;; $$ Last modified:  23:01:43 Mon Mar 11 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -55,6 +55,16 @@
 (test test-biquad-bp1
   (let ((bq (make-biquad-bandpass 200 300)))
     (is (= (clm:mus-order bq) 3))))
+
+;;; test-analyze-spectrum
+;;; RP  Mon Mar 11 23:00:43 2024
+(test test-analyze-spectrum
+      (let* ((infile (test-pathname "noise.wav"))
+             (outfile "/tmp/test-ana.csv")
+             (res (analyze-spectrum infile :in-samples? nil
+                                           :dur .5
+                                           :outfile outfile)))
+        (is (probe-file outfile))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
