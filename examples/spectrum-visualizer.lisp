@@ -18,7 +18,6 @@
 
 (init-kernel (serapeum:count-cpus))
 
-
 (let* ((sndfile (path-from-same-dir "brushes.wav"))
        (anafile "/tmp/vis.csv")
        (width 4000)
@@ -31,18 +30,18 @@
        (num-windows nil)
        ;; visualisation start offset
        ;; purpose: exclude low-freq bins
-       (bin-offset 2)
+       (bin-offset 3)
        (fmin 0)
        (fmax (floor (clm:sound-srate sndfile)))
        (starting-point '()))
   (print "Starting fft analysis...")
-  (rp-clm:analyze-spectrum sndfile :rfreq frame-rate :fftsize 2048
+  (rp-clm:analyze-spectrum sndfile :rfreq frame-rate :fftsize 4096
                                    :outfile anafile)
   (print "Processing fft analysis...")
   (setf snd-ana (rp-clm:analysis->array anafile))
   (setf num-windows (length (aref snd-ana 0)))
   (setf starting-point (list 0 (rescale (parse-float:parse-float
-                                         (first (aref snd-ana 0)))
+                                         (nth bin-offset (aref snd-ana 0)))
                                         0.0 1.0 height 0)))
   (ensure-directories-exist outdir)
   (print "Starting image generation...")
