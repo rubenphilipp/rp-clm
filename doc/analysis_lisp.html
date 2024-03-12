@@ -45,12 +45,57 @@
  CLASS HIERARCHY
  none. no classes defined. 
 
- $$ Last modified:  19:00:31 Tue Mar 12 2024 CET
+ $$ Last modified:  19:31:27 Tue Mar 12 2024 CET
+</pre>
+
+<hr />
+<a name="analysis2fanalysis2d3earray"></a>
+<a name="robo6"></a><h2>analysis/analysis-&gt;array [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo1">analysis</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-12
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> This function reads an <a href="#robo1">analysis</a> csv file (generated via analyze-spectrum)
+ into an array. 
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> The path to the csv file containing the <a href="#robo1">analysis</a> data. 
+</pre>
+<p class="item_name">OPTIONAL ARGUMENTS</p>
+<pre> keyword-arguments:
+ - :header-row? Include the header row (cf. analyze-spectrum) in the array?
+   Default = nil
+ - :header-col? Include the header column (i.e. the timestamps, cf.
+   analyze-spectrum) in the array? Default = nil
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> The array. 
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">(<strong>analysis-&gt;array</strong> "/tmp/ana.csv"
+                 :header-row? t
+                 :header-col? t)
+;; =&gt;
+#(("t" "0.000000" "23.437500" "46.875000" "70.312500" "93.750000" "117.187500"
+   "140.625000" "164.062500" "187.500000" "210.937500" "234.375000"
+   "257.812500" "281.250000" "304.687500" "328.125000" "351.562500"
+   "375.000000" "398.437500" "421.875000" "445.312500" "468.750000"
+   "492.187500" "515.625000" "539.062500" "562.500000" "585.937500"
+   "609.375000" "632.812500" "656.250000" "679.687500" "703.125000"
+   "726.562500" "750.000000" "773.437500" "796.875000" "820.312500" etc...
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>analysis-&gt;array</strong> (file &amp;key header-row? header-col?)
 </pre>
 
 <hr />
 <a name="analysis2fanalyze2dspectrum"></a>
-<a name="robo6"></a><h2>analysis/analyze-spectrum [ Functions ]</h2>
+<a name="robo7"></a><h2>analysis/analyze-spectrum [ Functions ]</h2>
 
 <p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo1">analysis</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
 <p class="item_name">AUTHOR</p>
@@ -129,7 +174,7 @@ res)
 
 </div> <!-- content -->
 <div id="footer">
-<p>Generated from ./src/analysis.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-12 19:01:49</p>
+<p>Generated from ./src/analysis.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-12 19:31:45</p>
 </div> <!-- footer -->
 </body>
 </html>
