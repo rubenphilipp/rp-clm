@@ -16,18 +16,53 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined. 
 ;;;
-;;; $$ Last modified:  19:27:24 Tue Mar 12 2024 CET
+;;; $$ Last modified:  19:31:27 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (in-package :rp-clm)
 
-(defun read-ana-test (file)
-  (let ((csv (cl-csv:read-csv (pathname file) :separator #\comma)))
-    (make-array (1- (length csv))
-                :initial-contents (mapcar #'cdr (cdr csv)))))
 
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; ****f* analysis/analysis->array
+;;; AUTHOR
+;;; Ruben Philipp <me@rubenphilipp.com>
+;;;
+;;; CREATED
+;;; 2024-03-12
+;;; 
+;;; DESCRIPTION
+;;; This function reads an analysis csv file (generated via analyze-spectrum)
+;;; into an array. 
+;;;
+;;; ARGUMENTS
+;;; The path to the csv file containing the analysis data. 
+;;; 
+;;; OPTIONAL ARGUMENTS
+;;; keyword-arguments:
+;;; - :header-row? Include the header row (cf. analyze-spectrum) in the array?
+;;;   Default = nil
+;;; - :header-col? Include the header column (i.e. the timestamps, cf.
+;;;   analyze-spectrum) in the array? Default = nil
+;;; 
+;;; RETURN VALUE
+;;; The array. 
+;;;
+;;; EXAMPLE
+#|
+(analysis->array "/tmp/ana.csv"
+                 :header-row? t
+                 :header-col? t)
+;; =>
+#(("t" "0.000000" "23.437500" "46.875000" "70.312500" "93.750000" "117.187500"
+   "140.625000" "164.062500" "187.500000" "210.937500" "234.375000"
+   "257.812500" "281.250000" "304.687500" "328.125000" "351.562500"
+   "375.000000" "398.437500" "421.875000" "445.312500" "468.750000"
+   "492.187500" "515.625000" "539.062500" "562.500000" "585.937500"
+   "609.375000" "632.812500" "656.250000" "679.687500" "703.125000"
+   "726.562500" "750.000000" "773.437500" "796.875000" "820.312500" etc...
+|#
+;;; SYNOPSIS
 (defun analysis->array (file &key header-row? header-col?)
   ;;; ****
   (let ((csv (cl-csv:read-csv (pathname file) :separator #\comma)))
