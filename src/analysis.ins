@@ -16,41 +16,11 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined. 
 ;;;
-;;; $$ Last modified:  18:33:35 Tue Mar 12 2024 CET
+;;; $$ Last modified:  18:34:51 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (in-package :rp-clm)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; This instrument returns an the fft analysis data of a given file.
-;;; Results in dB (norm-type = 0), or linear normalized to 1.0 (norm-type = 1),
-;;; or linear unnormalized (norm-type not 0 or 1).
-;;; When in-samples?, the timestamp in the csv will be printed in samples
-;;; (relative to the sndfile) instead of seconds. 
-;;; The results are written to a csv file. 
-;;; cf. scentroid.ins and track-rms.ins
-;;; RP  Mon Mar 11 16:54:45 2024
-;;;
-;;; EXAMPLE
-#|
-(let* ((infile "/Users/rubenphilipp/Desktop/clm/fft/brushes.wav")
-       (outfile "/tmp/ana.csv")
-       (res (analyze-spectrum infile :in-samples? nil
-                                     :fftsize 2048
-                                     :norm-type 0
-                                     ;;:dur .5
-                                     :outfile outfile)))
-  res)
-
-(let* ((anafile "/tmp/ana.csv")
-       (separator #\comma)
-       (csv (cl-csv:read-csv (pathname anafile) :separator separator))
-       (row 300)
-       (freqs (cdr (first csv)))
-       (snapshot (cdr (nth row csv))))
-  (vgplot::plot freqs snapshot))
-|#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ****f* analysis/analyze-spectrum
