@@ -14,9 +14,9 @@
 ;;; soundfiles. 
 ;;;
 ;;; CLASS HIERARCHY
+;;; none. no classes defined. 
 ;;;
-;;;
-;;; $$ Last modified:  23:32:44 Mon Mar 11 2024 CET
+;;; $$ Last modified:  18:08:50 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -58,6 +58,8 @@
                                  (norm-type 1) in-samples?
                                  (fftsize 4096) (debug nil))
   ;;; ****
+  (unless (probe-file file)
+    (error "analyze-spectrum: The (snd)file does not exist!"))
   (when (probe-file outfile)
     (warn "analyze-spectrum: The outfile ~a already exists and will be ~
            superseded." outfile)
@@ -123,4 +125,4 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; EOF analysis.lisp
+;;; EOF analysis.ins

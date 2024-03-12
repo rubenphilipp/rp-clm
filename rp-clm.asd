@@ -13,7 +13,7 @@
 ;;; System definition for rp-clm. 
 ;;;
 ;;;
-;;; $$ Last modified:  22:58:08 Mon Mar 11 2024 CET
+;;; $$ Last modified:  18:12:36 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -24,14 +24,15 @@
   :license "GPL Version 2.0 or later"
   :serial t
   :in-order-to ((test-op (test-op "rp-clm/tests")))
-  ;;:depends-on ("clm")
+  :depends-on ("cl-csv"
+               (:feature (:not :clm) "clm"))
   :pathname "src/"
   :components ((:file "package")
+               (:file "utilities")
                (:file "filters")
-               (:file "analysis")
-               ;; this must be loaded at the end of this list
+               ;; these must be loaded at the end of this list
+               (:file "compile") ;; this compiles the instruments
                (:file "export")))
-
 
 ;;; regression tests
 (defsystem "rp-clm/tests"

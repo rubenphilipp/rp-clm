@@ -15,7 +15,7 @@
 ;;; CLASS HIERARCHY
 ;;;
 ;;;
-;;; $$ Last modified:  23:01:43 Mon Mar 11 2024 CET
+;;; $$ Last modified:  18:13:32 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -60,10 +60,10 @@
 ;;; RP  Mon Mar 11 23:00:43 2024
 (test test-analyze-spectrum
       (let* ((infile (test-pathname "noise.wav"))
-             (outfile "/tmp/test-ana.csv")
-             (res (analyze-spectrum infile :in-samples? nil
-                                           :dur .5
-                                           :outfile outfile)))
+             (outfile "/tmp/test-ana.csv"))
+        (analyze-spectrum infile :in-samples? nil
+                                 :dur .5
+                                 :outfile outfile)
         (is (probe-file outfile))))
 
 
