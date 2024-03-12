@@ -16,7 +16,7 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined. 
 ;;;
-;;; $$ Last modified:  19:00:31 Tue Mar 12 2024 CET
+;;; $$ Last modified:  19:27:24 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -26,6 +26,24 @@
   (let ((csv (cl-csv:read-csv (pathname file) :separator #\comma)))
     (make-array (1- (length csv))
                 :initial-contents (mapcar #'cdr (cdr csv)))))
+
+
+(defun analysis->array (file &key header-row? header-col?)
+  ;;; ****
+  (let ((csv (cl-csv:read-csv (pathname file) :separator #\comma)))
+    (make-array (if header-row?
+                    (length csv)
+                    (1- (length csv)))
+                :initial-contents
+                (cond ((and header-row? (not header-col?))
+                       (mapcar #'cdr csv))
+                      ((and (not header-row?) header-col?)
+                       (cdr csv))
+                      ((and header-row? header-col?)
+                       csv)
+                      (t (mapcar #'cdr (cdr csv)))))))
+                       
+                                         
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ****f* analysis/analyze-spectrum
@@ -144,21 +162,23 @@ res)
               ;; output header
               (when (= i start)
                 (let ((freq 0))
-                  (dotimes (k fft2)
+                  (dotimes (k (1+ fft2))
                     (if (zerop k)
                         (clm-print outfil "t,")
                         (progn
                           (clm-print outfil "~A" freq)
-                          (unless (= k (1- fft2))
-                            (clm-print outfil ","))))
-                    (incf freq binwidth)))
+                          (unless (= k fft2)
+                            (clm-print outfil ","))
+                          (incf freq binwidth)))))
                 (clm-print outfil "~%"))
+              ;; output data
+              ;; NB: 1+ because of header col
               (dotimes (k fft2)
                 (when (zerop k)
                   ;; add timestamp
                   (clm-print outfil "~A"
                              (if in-samples? i (/ i fsr))))
-                (unless (= k (1- fft2))
+                (unless (= k fft2)
                   (clm-print outfil ","))
                 (clm-print outfil "~A" (aref fdr k)))
               (clm-print outfil "~%")
