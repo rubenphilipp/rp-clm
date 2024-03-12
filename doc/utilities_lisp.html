@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<script src="./robodoc.js"></script>
+<title>utilities.lisp</title>
+<!-- Source: ./src/utilities.lisp -->
+<!-- Generated with ROBODoc Version 4.99.44 (Nov 13 2022) -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc"></a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="./toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="./robo_sourcefiles.html#top">Sourcefiles</a>
+<a class="menuitem" href="./masterindex.html#top">Index</a>
+<a class="menuitem" href="./robo_generics.html#top">Generics</a>
+<a class="menuitem" href="./robo_functions.html#top">Functions</a>
+<a class="menuitem" href="./robo_modules.html#top">Modules</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="rp2dclm2futilities"></a>
+<a name="robo4"></a><h2>rp-clm/utilities [ Modules ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./robo_modules.html#robo_top_of_doc">Modules</a> ]</p>
+<p class="item_name">NAME</p>
+<pre> <strong>utilities</strong>
+</pre>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-12
+</pre>
+<p class="item_name">PURPOSE</p>
+<pre> Utility functions. 
+
+ $$ Last modified:  17:05:23 Tue Mar 12 2024 CET
+</pre>
+
+<hr />
+<a name="utilities2fpath2dfrom2dsame2ddir"></a>
+<a name="robo11"></a><h2>utilities/path-from-same-dir [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo4">utilities</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2023-07-09
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> This function returns the full path to a file relative to the directory of
+ the current lisp file.
+ NB: This function is borrowed from Michael Edwards's slippery-chicken.
+ NB2: This function does not work with files which have been loaded via
+      ASDF/quicklisp.
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> - A string indicating the filename (or pathname) to the file relative to
+   the current lisp file.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> A string with the full path to the file.
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>path-from-same-dir</strong> (file)
+</pre>
+
+<hr />
+<a name="utilities2ftrailing2dslash"></a>
+<a name="robo12"></a><h2>utilities/trailing-slash [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo4">utilities</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2023-07-09
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> This function ensures that a (path) string ends with a trailing slash.
+ NB: This function is borrowed from Michael Edward's slippery-chicken.
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> A string containing the path to be checked and corrected.
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> The path with a trailing slash.
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(defun <strong>trailing-slash</strong> (path)
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./src/utilities.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-12 18:34:03</p>
+</div> <!-- footer -->
+</body>
+</html>
