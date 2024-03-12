@@ -36,7 +36,7 @@
        (fmax (floor (clm:sound-srate sndfile)))
        (starting-point '()))
   (print "Starting fft analysis...")
-  (rp-clm:analyze-spectrum sndfile :rfreq 25 :fftsize 2048
+  (rp-clm:analyze-spectrum sndfile :rfreq frame-rate :fftsize 2048
                                    :outfile anafile)
   (print "Processing fft analysis...")
   (setf snd-ana (rp-clm:analysis->array anafile))

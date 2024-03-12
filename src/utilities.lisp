@@ -12,7 +12,7 @@
 ;;; PURPOSE
 ;;; Utility functions. 
 ;;;
-;;; $$ Last modified:  17:05:23 Tue Mar 12 2024 CET
+;;; $$ Last modified:  21:51:45 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -74,6 +74,15 @@
                (trailing-slash
                 (directory-namestring (truename *load-pathname*)))
                file))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun count-file-lines (file)
+  (with-open-file (fil file :if-does-not-exist nil)
+    (loop for line = (read-line fil nil)
+          for i from 1
+          while line
+          finally (return i))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; EOF utilities.lisp
