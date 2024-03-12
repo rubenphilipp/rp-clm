@@ -15,7 +15,7 @@
 ;;; CLASS HIERARCHY
 ;;;
 ;;;
-;;; $$ Last modified:  18:13:32 Tue Mar 12 2024 CET
+;;; $$ Last modified:  20:59:46 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -65,6 +65,17 @@
                                  :dur .5
                                  :outfile outfile)
         (is (probe-file outfile))))
+
+;;; test-analysis->array
+(test test-analysis->array
+      (let* ((infile (test-pathname "noise.wav"))
+             (outfile "/tmp/test-ana.csv"))
+        (analyze-spectrum infile :in-samples? nil
+                                 :dur .3
+                                 :outfile outfile)
+        (let ((array (analysis->array outfile :header-row? nil
+                                              :header-col? nil)))
+          (is (arrayp array)))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
