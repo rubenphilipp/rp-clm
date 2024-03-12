@@ -115,6 +115,9 @@ Temporary Items
 *.o
 *.so
 
+# other tmp files
+*.dat
+
 ### exceptions
 !/tests/noise.wav
 

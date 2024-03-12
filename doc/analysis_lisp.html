@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="./robodoc.css" type="text/css" />
+<script src="./robodoc.js"></script>
+<title>analysis.lisp</title>
+<!-- Source: ./src/analysis.lisp -->
+<!-- Generated with ROBODoc Version 4.99.44 (Nov 13 2022) -->
+</head>
+<body>
+<div id="logo">
+<a name="robo_top_of_doc"></a>
+</div> <!-- logo -->
+<div id="navigation">
+<a class="menuitem" href="./toc_index.html#top">Table of Contents</a>
+<a class="menuitem" href="./robo_sourcefiles.html#top">Sourcefiles</a>
+<a class="menuitem" href="./masterindex.html#top">Index</a>
+<a class="menuitem" href="./robo_generics.html#top">Generics</a>
+<a class="menuitem" href="./robo_functions.html#top">Functions</a>
+<a class="menuitem" href="./robo_modules.html#top">Modules</a>
+</div> <!-- navigation -->
+<div id="content">
+<hr />
+<a name="rp2dclm2fanalysis"></a>
+<a name="robo1"></a><h2>rp-clm/analysis [ Modules ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="./robo_modules.html#robo_top_of_doc">Modules</a> ]</p>
+<p class="item_name">NAME</p>
+<pre> <a href="./filters_lisp.html#robo3">filters</a>
+</pre>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-11
+</pre>
+<p class="item_name">PURPOSE</p>
+<pre> This module implements various functions and instruments to analyze
+ soundfiles. 
+
+ CLASS HIERARCHY
+ none. no classes defined. 
+
+ $$ Last modified:  19:00:31 Tue Mar 12 2024 CET
+</pre>
+
+<hr />
+<a name="analysis2fanalyze2dspectrum"></a>
+<a name="robo6"></a><h2>analysis/analyze-spectrum [ Functions ]</h2>
+
+<p>[ <a href="#robo_top_of_doc">Top</a> ] [ <a href="#robo1">analysis</a> ] [ <a href="./robo_functions.html#robo_top_of_doc">Functions</a> ]</p>
+<p class="item_name">AUTHOR</p>
+<pre> Ruben Philipp &lt;me@rubenphilipp.com&gt;
+</pre>
+<p class="item_name">CREATED</p>
+<pre> 2024-03-12
+</pre>
+<p class="item_name">DESCRIPTION</p>
+<pre> This instrument performs multiple fft-analyzes of a given sndfile and writes
+ the results to a csv-file. The time-delta of the starting points of the
+ analyzes is determined by a frequency (rfreq) which is relative to the
+ sample-rate of the source sndfile.
+ The resulting csv-file contains a header that lists the start frequency of
+ each fft-bin, which -- obviously -- depends on the fftsize. The next rows
+ contain the <a href="#robo1">analysis</a> data for each bin either in dB, linear normalized or
+ linear unnormalized (cf. norm-type). The first column is the index of the
+ respective <a href="#robo1">analysis</a> data, either in seconds (default) or in samples.
+
+ Please note:
+ Depending on the settings and the duration of the sndfile (or of the segment
+ to be analyzed), the <a href="#robo1">analysis</a> might take some time and the resulting file
+ can grow quite big. 
+</pre>
+<p class="item_name">ARGUMENTS</p>
+<pre> The path to the sndfile which is to be analyzed (as a string).
+</pre>
+<p class="item_name">OPTIONAL ARGUMENTS</p>
+<pre> keyword-arguments:
+ - :beg. The start time of the <a href="#robo1">analysis</a> (in seconds) in the sndfile.
+   Default = 0
+ - :dur. The duration of the <a href="#robo1">analysis</a> (in seconds), relative to beg. When
+   nil, the complete sndfile (from beg) will be analyzed. Default = nil.
+ - :rfreq. The "sampling-frequency" (in Hz) of the fft-<a href="#robo1">analysis</a>, i.e. the
+   number of analyses per second. Default = 100
+ - :in-channel. The channel of the sndfile to analyze. Default = 0
+ - :outfile. The output filepath for the csv-file.
+   Default = "/tmp/spectrum.csv"
+ - :norm-type. The normalization method of the amplitudes in the bins.
+   In dB (norm-type = 0), or linear normalized to 1.0 (norm-type = 1),
+   or linear unnormalized (norm-type not 0 or 1). Default = 1
+ - :in-samples?. When T, the first column (the index) will be given in
+   samples instead of seconds. Default = nil
+</pre>
+<p class="item_name">RETURN VALUE</p>
+<pre> The path to the <a href="#robo1">analysis</a> (csv-)file.
+</pre>
+<p class="item_name">EXAMPLE</p>
+<pre class="source">(let* ((infile "/Users/rubenphilipp/Desktop/clm/fft/brushes.wav")
+       (outfile "/tmp/ana.csv")
+       (res (<strong>analyze-spectrum</strong> infile :in-samples? nil
+                                     :fftsize 2048
+                                     :norm-type 0
+                                     ;;:dur .5
+                                     :outfile outfile)))
+res)
+;; =&gt; "/tmp/ana.csv"
+
+;; use vgplot to visualize the <a href="#robo1">analysis</a>:
+(let* ((anafile "/tmp/ana.csv")
+       (separator #\comma)
+       (csv (cl-csv:read-csv (pathname anafile) :separator separator))
+       (row 300)
+       (freqs (cdr (first csv)))
+       (snapshot (cdr (nth row csv))))
+  (vgplot::plot freqs snapshot))
+</pre>
+<p class="item_name">SYNOPSIS</p>
+<pre class="source">(definstrument <strong>analyze-spectrum</strong> (file &amp;key
+                                 (beg 0.0) (dur nil) (rfreq 100)
+                                 (in-channel 0)
+                                 (outfile "/tmp/spectrum.csv")
+                                 (norm-type 1) in-samples?
+                                 (fftsize 4096))
+</pre>
+
+</div> <!-- content -->
+<div id="footer">
+<p>Generated from ./src/analysis.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-12 19:01:49</p>
+</div> <!-- footer -->
+</body>
+</html>

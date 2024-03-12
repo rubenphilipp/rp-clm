@@ -16,11 +16,16 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined. 
 ;;;
-;;; $$ Last modified:  18:34:51 Tue Mar 12 2024 CET
+;;; $$ Last modified:  19:00:31 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (in-package :rp-clm)
+
+(defun read-ana-test (file)
+  (let ((csv (cl-csv:read-csv (pathname file) :separator #\comma)))
+    (make-array (1- (length csv))
+                :initial-contents (mapcar #'cdr (cdr csv)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ****f* analysis/analyze-spectrum
@@ -167,4 +172,4 @@ res)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; EOF analysis.ins
+;;; EOF analysis.lisp

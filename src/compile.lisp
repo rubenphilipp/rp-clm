@@ -13,7 +13,7 @@
 ;;; This module is used to compile parts of the code in the "clm-way". 
 ;;;
 ;;;
-;;; $$ Last modified:  18:10:04 Tue Mar 12 2024 CET
+;;; $$ Last modified:  19:00:38 Tue Mar 12 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -25,7 +25,7 @@
 ;;; Indeed, this is somewhat dirty and should be improved.
 ;;; RP  Tue Mar 12 18:04:52 2024
 
-(defmacro compile-and-load (name &key (src-ext ".ins"))
+(defmacro compile-and-load (name &key (src-ext ".lisp"))
   `(let* ((filepath-sans-ext
             (namestring
              (asdf::system-relative-pathname "rp-clm" (concatenate 'string
