@@ -16,7 +16,7 @@
 ;;; CLASS HIERARCHY
 ;;; none. no classes defined. 
 ;;;
-;;; $$ Last modified:  19:31:27 Tue Mar 12 2024 CET
+;;; $$ Last modified:  19:45:52 Wed Mar 13 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -122,7 +122,9 @@
 ;;;   Default = "/tmp/spectrum.csv"
 ;;; - :norm-type. The normalization method of the amplitudes in the bins.
 ;;;   In dB (norm-type = 0), or linear normalized to 1.0 (norm-type = 1),
-;;;   or linear unnormalized (norm-type not 0 or 1). Default = 1
+;;;   or linear unnormalized (norm-type not 0 or 1). Default = 0
+;;; - :window-type. The window type for the fft (cf. clm doc).
+;;;   Default = hann-window
 ;;; - :in-samples?. When T, the first column (the index) will be given in
 ;;;   samples instead of seconds. Default = nil
 ;;; 
@@ -155,8 +157,9 @@ res)
                                  (beg 0.0) (dur nil) (rfreq 100)
                                  (in-channel 0)
                                  (outfile "/tmp/spectrum.csv")
-                                 (norm-type 1) in-samples?
-                                 (fftsize 4096))
+                                 (norm-type 0) in-samples?
+                                 (fftsize 4096)
+                                 (window-type hann-window))
   ;;; ****
   (unless (probe-file file)
     (error "analyze-spectrum: The (snd)file does not exist!"))
@@ -170,7 +173,7 @@ res)
          (let* ((incr (/ rfreq))
                 (fsr (sound-srate file))
                 (incrsamps (floor (* incr fsr)))
-                (winfun (make-fft-window :type hann-window :size fftsize))
+                (winfun (make-fft-window :type window-type :size fftsize))
                 (start (floor (* beg fsr)))
                 (dur (if dur dur (- (sound-duration file) beg)))
                 (end (+ start (floor (* dur fsr))))
