@@ -13,7 +13,7 @@
 ;;; System definition for rp-clm. 
 ;;;
 ;;;
-;;; $$ Last modified:  18:12:36 Tue Mar 12 2024 CET
+;;; $$ Last modified:  17:02:56 Wed Mar 20 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -32,7 +32,7 @@
                (:file "filters")
                ;; these must be loaded at the end of this list
                (:file "compile") ;; this compiles the instruments
-               (:file "export")))
+               (:file "export-symbols")))
 
 ;;; regression tests
 (defsystem "rp-clm/tests"

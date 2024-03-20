@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; ****h* apr/export
+;;; ****h* apr/export-symbols
 ;;; NAME
-;;; export
+;;; export-symbols
 ;;; 
 ;;; AUTHOR
 ;;; Ruben Philipp <me@rubenphilipp.com>
@@ -13,7 +13,7 @@
 ;;; This module exports all symbols from the rp-clm package. 
 ;;;
 ;;;
-;;; $$ Last modified:  00:19:07 Sun Mar 10 2024 CET
+;;; $$ Last modified:  17:03:11 Wed Mar 20 2024 CET
 ;;; ****
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -28,4 +28,4 @@
       (export symb package))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; EOF export.lisp
+;;; EOF export-symbols.lisp
