@@ -9,7 +9,7 @@
 <script src="./robodoc.js"></script>
 <title>analysis.lisp</title>
 <!-- Source: ./src/analysis.lisp -->
-<!-- Generated with ROBODoc Version 4.99.44 (Nov 13 2022) -->
+<!-- Generated with ROBODoc Version 4.99.45 (Mar 12 2025) -->
 </head>
 <body>
 <div id="logo">
@@ -45,7 +45,7 @@
  CLASS HIERARCHY
  none. no classes defined. 
 
- $$ Last modified:  19:31:27 Tue Mar 12 2024 CET
+ $$ Last modified:  19:45:52 Wed Mar 13 2024 CET
 </pre>
 
 <hr />
@@ -136,7 +136,9 @@
    Default = "/tmp/spectrum.csv"
  - :norm-type. The normalization method of the amplitudes in the bins.
    In dB (norm-type = 0), or linear normalized to 1.0 (norm-type = 1),
-   or linear unnormalized (norm-type not 0 or 1). Default = 1
+   or linear unnormalized (norm-type not 0 or 1). Default = 0
+ - :window-type. The window type for the fft (cf. clm doc).
+   Default = hann-window
  - :in-samples?. When T, the first column (the index) will be given in
    samples instead of seconds. Default = nil
 </pre>
@@ -168,13 +170,14 @@ res)
                                  (beg 0.0) (dur nil) (rfreq 100)
                                  (in-channel 0)
                                  (outfile "/tmp/spectrum.csv")
-                                 (norm-type 1) in-samples?
-                                 (fftsize 4096))
+                                 (norm-type 0) in-samples?
+                                 (fftsize 4096)
+                                 (window-type hann-window))
 </pre>
 
 </div> <!-- content -->
 <div id="footer">
-<p>Generated from ./src/analysis.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.44 on 2024-03-12 19:31:45</p>
+<p>Generated from ./src/analysis.lisp with <a href="http://www.xs4all.nl/~rfsber/Robo/robodoc.html">ROBODoc</a> V4.99.45 on 2025-03-12 16:46:06</p>
 </div> <!-- footer -->
 </body>
 </html>
